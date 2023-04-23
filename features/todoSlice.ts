@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
 
+type TodoType = {
+  id: number;
+  todo: string;
+};
+
 type InitialStateType = {
-  todos: [];
+  todos: TodoType[];
 };
 
 const initialState: InitialStateType = {
@@ -14,7 +19,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     set_todos: (state, action) => {
-      state.todos = action.payload;
+      state.todos.push(action.payload);
     },
   },
 });
