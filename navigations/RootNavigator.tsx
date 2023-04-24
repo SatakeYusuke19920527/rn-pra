@@ -1,19 +1,24 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import { FlexBox } from '../screens/FlexboxScreen';
-import Hello from '../screens/HelloScreen';
-import { ReduxTK } from '../screens/ReduxTKScreen';
+import React, { FC } from 'react';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
+import tw from 'tailwind-rn';
+import { useAuthState } from '../hooks/useAuthState';
+import { AuthStackNavigator } from './AuthStackNavigator';
+import { TagStackNavigator } from './TagStackNavigator';
 
-const Stack = createStackNavigator();
-export const RootNavigator = () => {
+export const RootNavigator: FC = () => {
+  const { user, isLoading } = useAuthState();
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={tw('flex-1 items-center justify-center')}>
+        <ActivityIndicator size="large" color="gray" />
+      </SafeAreaView>
+    );
+  }
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ReduxTK">
-        <Stack.Screen name="Hello" component={Hello} />
-        <Stack.Screen name="FlexBox" component={FlexBox} />
-        <Stack.Screen name="ReduxTK" component={ReduxTK} />
-      </Stack.Navigator>
+      {user?.uid ? <TagStackNavigator /> : <AuthStackNavigator />}
     </NavigationContainer>
   );
 };

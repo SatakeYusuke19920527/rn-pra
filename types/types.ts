@@ -1,5 +1,27 @@
+export type User = {
+  uid: string;
+  email: string;
+};
+
+export type Tag = {
+  id: string;
+  name: string;
+  createdAt: string;
+};
+
+export type Task = {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+};
+
 export type RootStackParamList = {
-  FlexBox: any;
-  ReduxTK: any;
-  Hello: any;
+  Auth: undefined;
+  TagList: undefined;
+  CreateTag: undefined;
+  TaskList: undefined;
+  TaskStack: undefined;
+  CreateTask: undefined;
+  EditTask: undefined;
 };
