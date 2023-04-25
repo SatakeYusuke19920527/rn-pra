@@ -42,6 +42,12 @@ export const TagListScreen: VFC<Props> = ({ navigation }) => {
   }
   return (
     <SafeAreaView style={tw('flex-1 bg-gray-100 items-center')}>
+      <TouchableOpacity
+        style={tw('mt-2')}
+        onPress={() => navigation.navigate('Sample')}
+      >
+        <MaterialCommunityIcons name="tag-plus" size={40} color="#5f9ea0" />
+      </TouchableOpacity>
       <Title first="Tag" last="List" />
       <TouchableOpacity
         style={tw('mt-2')}

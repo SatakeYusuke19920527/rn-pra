@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import { Alert, View } from 'react-native';
 import tw from 'tailwind-rn';
 import { IconButton } from '../components/IconButton';
@@ -9,11 +9,12 @@ import { CreateTagScreen } from '../screens/CreateTagScreen';
 import { TagListScreen } from '../screens/TagListScreen';
 import { logout, selectUser } from '../slices/userSlice';
 import { RootStackParamList } from '../types/types';
+import { SampleNavigator } from './SampleNavigator';
 import { TaskStackNavigator } from './TaskStackNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const TagStackNavigator: VFC = () => {
+export const TagStackNavigator: FC = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const signOut = async () => {
@@ -57,6 +58,28 @@ export const TagStackNavigator: VFC = () => {
         }}
       >
         <Stack.Screen name="CreateTag" component={CreateTagScreen} />
+      </Stack.Group>
+      <Stack.Group
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#008b8b',
+          },
+          headerTitle: user.email,
+          headerTintColor: 'white',
+          headerBackTitle: 'Back',
+          headerRight: () => (
+            <View style={tw('mr-3')}>
+              <IconButton
+                name="logout"
+                size={20}
+                color="white"
+                onPress={signOut}
+              />
+            </View>
+          ),
+        }}
+      >
+        <Stack.Screen name="Sample" component={SampleNavigator} />
       </Stack.Group>
     </Stack.Navigator>
   );

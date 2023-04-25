@@ -24,4 +24,6 @@ export type RootStackParamList = {
   TaskStack: undefined;
   CreateTask: undefined;
   EditTask: undefined;
+  Sample: undefined;
+  SampleStack: undefined;
 };

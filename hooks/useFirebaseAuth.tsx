@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { auth } from '../plugins/firebase';
 
 export const useFirebaseAuth = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('satake@satake.com');
+  const [password, setPassword] = useState('satakesatake');
   const [isLogin, setIsLogin] = useState(true);
   const [authErr, setAuthErr] = useState('');
 
