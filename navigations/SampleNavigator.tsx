@@ -1,42 +1,30 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { useAuthState } from '../hooks/useAuthState';
-import { HomeScreen } from '../screens/HomeScreen';
-import { SecondScreen } from '../screens/SecondScreen';
+import { ModalScreen } from '../screens/ModalScreen';
+import { SampleScreen } from '../screens/SampleScreen';
+import { RootStackParamList } from '../types/types';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 export const SampleNavigator: FC = () => {
   const { user, isLoading } = useAuthState();
   return (
-    <NavigationContainer independent={true}>
-      <Tab.Navigator
+    <Stack.Navigator initialRouteName="Sample">
+      <Stack.Group
         screenOptions={{
           headerShown: false,
         }}
       >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarBadge: 3,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Second"
-          component={SecondScreen}
-          options={{
-            tabBarBadge: 1,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="settings" color={color} size={size} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+        <Stack.Screen name="Sample" component={SampleScreen} />
+      </Stack.Group>
+      <Stack.Group
+        screenOptions={{
+          presentation: 'modal',
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Modal" component={ModalScreen} />
+      </Stack.Group>
+    </Stack.Navigator>
   );
 };

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import { CreateTaskScreen } from '../screens/CreateTaskScreen';
 import { EditTaskScreen } from '../screens/EditTaskScreen';
 import { TaskListScreen } from '../screens/TaskListScreen';
@@ -7,7 +7,7 @@ import { RootStackParamList } from '../types/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const TaskStackNavigator: VFC = () => {
+export const TaskStackNavigator: FC = () => {
   return (
     <Stack.Navigator initialRouteName="TaskList">
       <Stack.Group

@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -23,7 +23,7 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'TagList'>;
 };
 
-export const TagListScreen: VFC<Props> = ({ navigation }) => {
+export const TagListScreen: FC<Props> = ({ navigation }) => {
   const { tags, getErr, isLoading } = useGetTags();
   const tagsKeyExtractor = (item: Omit<Tag, 'createdAt'>) => item.id;
   const tagsRenderItem = ({ item }: Item) => (
@@ -44,7 +44,7 @@ export const TagListScreen: VFC<Props> = ({ navigation }) => {
     <SafeAreaView style={tw('flex-1 bg-gray-100 items-center')}>
       <TouchableOpacity
         style={tw('mt-2')}
-        onPress={() => navigation.navigate('Sample')}
+        onPress={() => navigation.navigate('SampleNav')}
       >
         <MaterialCommunityIcons name="tag-plus" size={40} color="#5f9ea0" />
       </TouchableOpacity>

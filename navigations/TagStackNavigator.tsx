@@ -79,7 +79,7 @@ export const TagStackNavigator: FC = () => {
           ),
         }}
       >
-        <Stack.Screen name="Sample" component={SampleNavigator} />
+        <Stack.Screen name="SampleNav" component={SampleNavigator} />
       </Stack.Group>
     </Stack.Navigator>
   );
